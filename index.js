@@ -64,7 +64,7 @@ function main4() {
   console.log({ foodPalindrome });
 }
 
-main4();
+//main4();
 
 //Sum of first N numbers
 
@@ -104,3 +104,17 @@ function strPalindrome(index) {
 
   return strPalindrome(index + 1);
 }
+
+//Lecture 3 : Multiple Recursion Calls
+//find Nth fibonacci term 0 1 1 2 3 5 8 13 21
+
+function nFibonacci(n) {
+  if (n <= 1) return n;
+  return nFibonacci(n - 1) + nFibonacci(n - 2);
+}
+
+function l3() {
+  console.log(nFibonacci(8));
+}
+
+l3();

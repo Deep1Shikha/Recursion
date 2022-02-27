@@ -107,7 +107,8 @@ function strPalindrome(index) {
 
 //Lecture 3 : Multiple Recursion Calls
 //find Nth fibonacci term 0 1 1 2 3 5 8 13 21
-
+let resultArray = [];
+let subArray = [3, 1, 2];
 function nFibonacci(n) {
   if (n <= 1) return n;
   return nFibonacci(n - 1) + nFibonacci(n - 2);
@@ -115,6 +116,21 @@ function nFibonacci(n) {
 
 function l3() {
   console.log(nFibonacci(8));
+  subsequence(0, resultArray);
 }
 
 l3();
+
+//print the subsequences
+
+function subsequence(index, resultArray) {
+  if (index >= subArray.length) {
+    console.log(resultArray);
+    return;
+  }
+
+  resultArray.push(subArray[index]);
+  subsequence(index + 1, resultArray);
+  resultArray.pop(subArray[index]);
+  subsequence(index + 1, resultArray);
+}

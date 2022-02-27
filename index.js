@@ -52,7 +52,7 @@ function main4() {
   recursiveSumParameter(5);
   let val = recursiveSumFunctional(5);
   console.log({ val });
-  let fact = factorial(5);
+  let fact = factorial(3);
   console.log({ fact });
   //num = [1, 2, 3, 4,5];
   num = ['apple', 'mango', 'banana', 'guava', 'cherry'];
@@ -81,7 +81,7 @@ function recursiveSumFunctional(i) {
 
 //Factorial of n
 function factorial(n) {
-  if (n == 0) return 1;
+  if (n <= 1) return n;
   return n * factorial(n - 1);
 }
 
@@ -119,7 +119,7 @@ function l3() {
   subsequence(0, resultArray);
 }
 
-l3();
+//l3();
 
 //print the subsequences
 

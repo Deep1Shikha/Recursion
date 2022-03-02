@@ -134,3 +134,31 @@ function subsequence(index, resultArray) {
   resultArray.pop(subArray[index]);
   subsequence(index + 1, resultArray);
 }
+
+//Lecture 7
+let sumToCompare = 12;
+let oneSumInput = [1, 7, 9, 11, 3, 5];
+function oneSubsequenceSum(index, resultArray, localSum) {
+  if (index == oneSumInput.length) {
+    if (localSum == sumToCompare) {
+      console.log(resultArray);
+      return true;
+    } else return false;
+  }
+
+  localSum += oneSumInput[index];
+  resultArray.push(oneSumInput[index]);
+  if (oneSubsequenceSum(index + 1, resultArray, localSum)) return true;
+
+  localSum -= oneSumInput[index];
+  resultArray.pop();
+
+  if (oneSubsequenceSum(index + 1, resultArray, localSum)) return true;
+
+  return false;
+}
+
+function Lecture7() {
+  oneSubsequenceSum(0, [], 0);
+}
+Lecture7();

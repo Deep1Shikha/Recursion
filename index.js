@@ -108,7 +108,7 @@ function strPalindrome(index) {
 //Lecture 3 : Multiple Recursion Calls
 //find Nth fibonacci term 0 1 1 2 3 5 8 13 21
 let resultArray = [];
-let subArray = [3, 1, 2];
+let subArray = [8, 7, 9, 11, 4, 6];
 function nFibonacci(n) {
   if (n <= 1) return n;
   return nFibonacci(n - 1) + nFibonacci(n - 2);
@@ -136,8 +136,33 @@ function subsequence(index, resultArray) {
 }
 
 //Lecture 7
-let sumToCompare = 12;
-let oneSumInput = [1, 7, 9, 11, 3, 5];
+let sumToCompare = 15;
+let oneSumInput = [8, 7, 9, 11, 4, 6];
+
+function Lecture7() {
+  oneSubsequenceSum(0, [], 0);
+  console.log(countTotalSubsequenceSum(0, 0));
+  printAllSubsequenceOfSum(0, [], 0);
+}
+Lecture7();
+
+function printAllSubsequenceOfSum(index, resultArray, localSum) {
+  if (index === oneSumInput.length) {
+    if (localSum == sumToCompare) {
+      console.log(resultArray);
+      return;
+    }
+    return;
+  }
+  localSum += oneSumInput[index];
+  resultArray.push(oneSumInput[index]);
+  printAllSubsequenceOfSum(index + 1, resultArray, localSum);
+
+  localSum -= oneSumInput[index];
+  resultArray.pop();
+  printAllSubsequenceOfSum(index + 1, resultArray, localSum);
+}
+
 function oneSubsequenceSum(index, resultArray, localSum) {
   if (index == oneSumInput.length) {
     if (localSum == sumToCompare) {
@@ -158,7 +183,15 @@ function oneSubsequenceSum(index, resultArray, localSum) {
   return false;
 }
 
-function Lecture7() {
-  oneSubsequenceSum(0, [], 0);
+function countTotalSubsequenceSum(index, localSum) {
+  if (index === oneSumInput.length) {
+    if (localSum == sumToCompare) return 1;
+    else return 0;
+  }
+  localSum += oneSumInput[index];
+  let l = countTotalSubsequenceSum(index + 1, localSum);
+  localSum -= oneSumInput[index];
+  let r = countTotalSubsequenceSum(index + 1, localSum);
+
+  return l + r;
 }
-Lecture7();

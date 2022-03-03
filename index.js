@@ -144,7 +144,7 @@ function Lecture7() {
   console.log(countTotalSubsequenceSum(0, 0));
   printAllSubsequenceOfSum(0, [], 0);
 }
-Lecture7();
+//Lecture7();
 
 function printAllSubsequenceOfSum(index, resultArray, localSum) {
   if (index === oneSumInput.length) {
@@ -194,4 +194,32 @@ function countTotalSubsequenceSum(index, localSum) {
   let r = countTotalSubsequenceSum(index + 1, localSum);
 
   return l + r;
+}
+
+//Lecture 8
+let comboSumArray = [2, 3, 6, 7];
+let targetForCombo = 9;
+
+function Lecture8() {
+  comboSum1(0, [], targetForCombo);
+}
+
+Lecture8();
+
+function comboSum1(index, resultArray, targetToReach) {
+  if (index == comboSumArray.length) {
+    if (targetToReach == 0) {
+      console.log(resultArray);
+      return;
+    }
+    return;
+  }
+
+  if (comboSumArray[index] <= targetToReach) {
+    resultArray.push(comboSumArray[index]);
+    comboSum1(index, resultArray, targetToReach - comboSumArray[index]);
+    resultArray.pop();
+  }
+
+  comboSum1(index + 1, resultArray, targetToReach);
 }

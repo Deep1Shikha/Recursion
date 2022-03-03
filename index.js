@@ -199,27 +199,31 @@ function countTotalSubsequenceSum(index, localSum) {
 //Lecture 8
 let comboSumArray = [2, 3, 6, 7];
 let targetForCombo = 9;
+let combo1 = [];
 
 function Lecture8() {
-  comboSum1(0, [], targetForCombo);
+  comboSum1(0, [], targetForCombo, combo1);
+  return combo1;
 }
 
-Lecture8();
+console.log(Lecture8());
 
-function comboSum1(index, resultArray, targetToReach) {
-  if (index == comboSumArray.length) {
+//[[2,2,2,3],[2,7],[3,3,3],[3,6]]
+
+function comboSum1(index, resultArray, targetToReach, ans) {
+  if (index >= comboSumArray.length) {
     if (targetToReach == 0) {
-      console.log(resultArray);
-      return;
+      // The slice() method returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array.
+      ans.push(resultArray.slice());
     }
     return;
   }
 
   if (comboSumArray[index] <= targetToReach) {
     resultArray.push(comboSumArray[index]);
-    comboSum1(index, resultArray, targetToReach - comboSumArray[index]);
+    comboSum1(index, resultArray, targetToReach - comboSumArray[index], ans);
     resultArray.pop();
   }
 
-  comboSum1(index + 1, resultArray, targetToReach);
+  comboSum1(index + 1, resultArray, targetToReach, ans);
 }
